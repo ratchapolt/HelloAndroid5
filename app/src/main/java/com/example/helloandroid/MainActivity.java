@@ -7,14 +7,19 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.helloandroid.model.InputDigits;
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private String mDigits;
+    //private String mDigits;
+    private InputDigits mInputDigits;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mInputDigits = new InputDigits("");
 
         clearDigits();
 
@@ -75,20 +80,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void addDigit(int i) {
-        if (mDigits.length() < 6) {
-            mDigits += String.valueOf(i);
+        if (mInputDigits.get().length() < 6) {
+            mInputDigits.add(i);
             showDigits();
         }
     }
 
     private void clearDigits() {
-        mDigits = "";
+        mInputDigits.clear();
         showDigits();
     }
 
     private void showDigits() {
         TextView tv = (TextView) findViewById(R.id.digit_text_view);
-        tv.setText(String.valueOf(mDigits));
+        tv.setText(mInputDigits.get());
     }
 }
 
