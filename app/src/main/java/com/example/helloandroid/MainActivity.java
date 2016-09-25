@@ -9,78 +9,87 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private String mDigits;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button btn1=(Button) findViewById(R.id.button_1);
+        clearDigits();
+
+        Button btn1 = (Button) findViewById(R.id.button_1);
         btn1.setOnClickListener(this);
-
-        Button btn2=(Button) findViewById(R.id.button_2);
+        Button btn2 = (Button) findViewById(R.id.button_2);
         btn2.setOnClickListener(this);
-
-        Button btn3=(Button) findViewById(R.id.button_3);
+        Button btn3 = (Button) findViewById(R.id.button_3);
         btn3.setOnClickListener(this);
-
-        Button btn4=(Button) findViewById(R.id.button_4);
+        Button btn4 = (Button) findViewById(R.id.button_4);
         btn4.setOnClickListener(this);
-
-        Button btn5=(Button) findViewById(R.id.button_5);
+        Button btn5 = (Button) findViewById(R.id.button_5);
         btn5.setOnClickListener(this);
-
-        Button btn6=(Button) findViewById(R.id.button_6);
+        Button btn6 = (Button) findViewById(R.id.button_6);
         btn6.setOnClickListener(this);
-
-        Button btn7=(Button) findViewById(R.id.button_7);
+        Button btn7 = (Button) findViewById(R.id.button_7);
         btn7.setOnClickListener(this);
-
-        Button btn8=(Button) findViewById(R.id.button_8);
+        Button btn8 = (Button) findViewById(R.id.button_8);
         btn8.setOnClickListener(this);
-
-        Button btn9=(Button) findViewById(R.id.button_9);
+        Button btn9 = (Button) findViewById(R.id.button_9);
         btn9.setOnClickListener(this);
-
-        Button btn0=(Button) findViewById(R.id.button_0);
+        Button btn0 = (Button) findViewById(R.id.button_0);
         btn0.setOnClickListener(this);
-
-        Button btnx=(Button) findViewById(R.id.clear_button);
-        btnx.setOnClickListener(this);
-
+        Button btnClear = (Button) findViewById(R.id.clear_button);
+        btnClear.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        //Toast t= Toast.makeText(this,"Hello",Toast.LENGTH_LONG);
+        //Toast t = Toast.makeText(this, "Hello", Toast.LENGTH_LONG);
         //t.show();
 
-        TextView tv=(TextView) findViewById(R.id.digit_text_view);
-        int id=v.getId();
+        int id = v.getId();
 
-        if(id == R.id.button_1){
-            tv.setText("1");
-        } else if (id == R.id.button_2){
-            tv.setText("2");
-        } else if (id == R.id.button_3){
-            tv.setText("3");
-        } else if (id == R.id.button_4){
-            tv.setText("4");
-        } else if (id == R.id.button_5){
-            tv.setText("5");
-        } else if (id == R.id.button_6){
-            tv.setText("6");
-        } else if (id == R.id.button_7){
-            tv.setText("7");
-        } else if (id == R.id.button_8){
-            tv.setText("8");
-        } else if (id == R.id.button_9){
-            tv.setText("9");
-        } else if (id == R.id.button_0){
-            tv.setText("0");
-        } else if (id == R.id.clear_button){
-            tv.setText("");
+        if (id == R.id.button_1) {
+            addDigit(1);
+        } else if (id == R.id.button_2) {
+            addDigit(2);
+        } else if (id == R.id.button_3) {
+            addDigit(3);
+        } else if (id == R.id.button_4) {
+            addDigit(4);
+        } else if (id == R.id.button_5) {
+            addDigit(5);
+        } else if (id == R.id.button_6) {
+            addDigit(6);
+        } else if (id == R.id.button_7) {
+            addDigit(7);
+        } else if (id == R.id.button_8) {
+            addDigit(8);
+        } else if (id == R.id.button_9) {
+            addDigit(9);
+        } else if (id == R.id.button_0) {
+            addDigit(0);
+        } else if (id == R.id.clear_button) {
+            clearDigits();
         }
-        //TextView tv=(TextView) findViewById(R.id.digit_text_view);
-        //tv.setText("Hello");
+    }
+
+    private void addDigit(int i) {
+        if (mDigits.length() < 6) {
+            mDigits += String.valueOf(i);
+            showDigits();
+        }
+    }
+
+    private void clearDigits() {
+        mDigits = "";
+        showDigits();
+    }
+
+    private void showDigits() {
+        TextView tv = (TextView) findViewById(R.id.digit_text_view);
+        tv.setText(String.valueOf(mDigits));
     }
 }
+
+
